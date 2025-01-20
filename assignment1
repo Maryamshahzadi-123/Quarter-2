@@ -1,1 +1,88 @@
+1. Messages
+● Explanation: Messages are the core of the API’s conversation system. You use them to
+set up the context and flow of the dialogue.
+Example:
+json
+Copy code
+[
+{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are an expert travel advisor.&quot;},
+{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Can you suggest some places to visit in Italy?&quot;}
+]
+●
+○ The system message defines the assistant&#39;s role.
+○ The user message contains the user&#39;s query.
+○ The assistant will generate a response like:
+&quot;Sure! In Italy, you can visit Rome, Venice, Florence, and the Amalfi Coast.&quot;
 
+2. Model
+● Explanation: Determines the specific AI model used for responses. Different models
+vary in capabilities.
+● Example:
+○ Using gpt-3.5-turbo:
+Response: &quot;Italy is a beautiful country! Rome and Venice are must-visits.&quot;
+○ Using gpt-4:
+Response: &quot;Italy offers a diverse experience with its rich history in Rome, artistic
+masterpieces in Florence, the canals of Venice, and the stunning Amalfi Coast.&quot;
+○ Key Difference: GPT-4 is more detailed and nuanced.
+
+3. Max Completion Tokens
+● Explanation: Limits the length of the assistant’s response in tokens.
+● Example:
+○ Setting max_tokens to 50:
+
+&quot;Rome offers historical landmarks like the Colosseum and the Vatican. Venice...&quot;
+○ Setting max_tokens to 150:
+&quot;Rome offers historical landmarks like the Colosseum and the Vatican. Venice is
+renowned for its canals and gondolas. Florence is the hub of Renaissance art
+and architecture. The Amalfi Coast provides breathtaking coastal scenery, ideal
+for relaxation.&quot;
+
+4. n
+● Explanation: Specifies how many response variations the model should generate.
+Example:
+json
+Copy code
+{
+&quot;n&quot;: 3
+}
+●
+○ Output:
+1. &quot;Rome is a must-visit city in Italy.&quot;
+2. &quot;Italy has amazing places like Venice and Florence.&quot;
+3. &quot;Explore Rome, Florence, and the Amalfi Coast for an unforgettable trip.&quot;
+○ Use Case: Compare responses to choose the best one.
+
+5. Stream
+● Explanation: Streams the response in parts instead of sending it all at once. This makes
+it feel faster for users.
+● Example:
+○ Output with stream = true:
+&quot;Rome is a...&quot;
+&quot;...beautiful city with...&quot;
+&quot;...many historical sites.&quot;
+
+6. Temperature
+● Explanation: Controls the creativity of the response.
+● Example:
+
+○ Temperature 0.2 (focused, factual):
+&quot;Rome, Venice, Florence, and the Amalfi Coast are top destinations in Italy.&quot;
+○ Temperature 0.8 (creative, varied):
+&quot;If you&#39;re visiting Italy, don&#39;t miss the eternal charm of Rome, the romantic canals
+of Venice, and the picturesque Amalfi Coast sunsets.&quot;
+
+7. Top_p
+● Explanation: Limits responses to the most probable outcomes.
+● Example:
+○ Top_p 0.9: The model chooses from the top 90% of likely responses, keeping it
+balanced.
+○ Top_p 0.5: Restricts options further, making responses less varied but more
+concise.
+
+8. Tools
+● Explanation: Enables the model to use external plugins or APIs for specialized tasks.
+● Example:
+○ With a web-search tool:
+User: &quot;What&#39;s the current weather in Rome?&quot;
+Response: &quot;Let me check... The current temperature in Rome is 24°C and
+sunny.&quot;
